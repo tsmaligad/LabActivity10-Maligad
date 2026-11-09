@@ -27,7 +27,7 @@ The project demonstrates the use of Eloquent ORM, database migrations, factories
 - **Posts Per Page:** 7, based on the seven letters in "Maligad"
 - **Custom Category:** Community Events
 - **Pinned Post:** Purok Maligad Clean-up Drive
-- **Birthday Post Date:** September 16, 2026 (verify this is your actual birthday)
+- **Birthday Post Date:** September 16, 2026 
 
 ## Database Records
 
