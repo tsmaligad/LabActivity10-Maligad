@@ -1,58 +1,122 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Lab Activity 10 – Barangay Bulletin
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Full-Stack Web Development**  
+Ateneo de Davao University
 
-## About Laravel
+## Project Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Barangay Bulletin – Purok Maligad is a Laravel-based web application developed for Barangay Matina Crossing in Davao City. The application allows residents to browse barangay announcements, search for posts by title, filter posts by category, and view individual announcements.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The project demonstrates the use of Eloquent ORM, database migrations, factories, seeders, query builder filtering, pagination, and Blade with Tailwind CSS.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+- Published barangay announcements with pinned posts displayed first
+- Title search and category filtering
+- Individual post pages with view counters
+- Pagination with seven posts per page
+- Draft posts excluded from public listings
+- Responsive Blade and Tailwind CSS interface
+- SQLite database with Faker-generated sample records
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Personalization
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Site Title:** Barangay Bulletin – Purok Maligad
+- **Personalized Author:** Kagawad Trixia Maligad
+- **Email:** kagawad.maligad@bulletin.test
+- **Posts Per Page:** 7, based on the seven letters in "Maligad"
+- **Custom Category:** Community Events
+- **Pinned Post:** Purok Maligad Clean-up Drive
+- **Birthday Post Date:** September 16, 2026 (verify this is your actual birthday)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Database Records
 
-## Agentic Development
+The database is populated using Laravel factories and seeders.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- 5 authors, including the manually created Kagawad
+- 40 published posts generated using Faker
+- 10 draft posts generated using the `draft()` factory state
+- 1 manually created pinned clean-up drive announcement
+- 51 posts in total
 
-```bash
-composer require laravel/boost --dev
+## Installation and Setup
 
-php artisan boost:install
-```
+**Requirements:** PHP compatible with the project's Composer dependencies, Composer, Node.js, npm, and SQLite support.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+1. Clone the repository:
 
-## Contributing
+   ```bash
+   git clone https://github.com/tsmaligad/LabActivity10-Maligad.git
+   cd LabActivity10-Maligad
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Install PHP dependencies:
 
-## Code of Conduct
+   ```bash
+   composer install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Copy the environment configuration:
 
-## Security Vulnerabilities
+   **Windows PowerShell:**
+   ```powershell
+   Copy-Item .env.example .env
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   **macOS/Linux:**
+   ```bash
+   cp .env.example .env
+   ```
 
-## License
+4. Generate the application key:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   php artisan key:generate
+   ```
+
+5. Set `DB_CONNECTION=sqlite` in `.env` and create `database/database.sqlite` if it does not exist.
+
+6. Run migrations and seed the database:
+
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+
+7. Install frontend dependencies:
+
+   ```bash
+   npm install
+   ```
+
+8. Start the Vite development server:
+
+   ```bash
+   npm run dev
+   ```
+
+9. In a separate terminal, start Laravel:
+
+   ```bash
+   php artisan serve
+   ```
+
+10. Open `/posts` in your browser.
+
+## Database and Eloquent Verification
+
+The project includes reversible migrations, a separate migration for the post view counter, and Eloquent models with explicitly defined fillable attributes.
+
+The required ActiveRecord demonstration uses `Post::find()`, modifies a post's title, saves it with `save()`, and retrieves the updated value.
+
+Evidence: `docs/tinker.png`
+
+## Technologies Used
+
+- Laravel
+- PHP
+- SQLite
+- Eloquent ORM
+- Blade
+- Tailwind CSS
+- Vite
+- Faker

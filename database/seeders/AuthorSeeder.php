@@ -10,7 +10,7 @@ class AuthorSeeder extends Seeder
     public function run(): void
     {
         Author::create([
-            'name' => 'Trixia Maligad',
+            'name' => 'Kagawad Trixia Maligad',
             'position' => 'Kagawad',
             'email' => 'kagawad.maligad@bulletin.test',
         ]);
