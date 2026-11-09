@@ -10,13 +10,19 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'body',
         'author_id',
+        'title',
+        'category',
+        'body',
+        'is_published',
+        'is_pinned',
+        'published_at',
+        'views'
     ];
 
-    public function author()
-    {
-        return $this->belongsTo(Author::class);
-    }
+    protected $casts = [
+        'is_published' => 'boolean',
+        'is_pinned' => 'boolean',
+        'published_at' => 'datetime',
+    ];
 }

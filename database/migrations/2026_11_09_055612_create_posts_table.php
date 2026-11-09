@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -11,11 +10,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('author_id')->constrained()->cascadeOnDelete();
             $table->string('title');
+            $table->string('category');
             $table->text('body');
-            $table->foreignId('author_id')
-                  ->constrained('authors')
-                  ->cascadeOnDelete();
+            $table->boolean('is_published')->default(false);
+            $table->boolean('is_pinned')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }
